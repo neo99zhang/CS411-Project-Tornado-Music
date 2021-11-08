@@ -11,8 +11,8 @@ $(document).ready(function () {
             modal.find('.modal-title').text(taskID)
             $('#task-form-display').removeAttr('taskID')
         } else {
-            modal.find('.modal-title').text('Edit Task ' + taskID)
-            $('#task-form-display').attr('taskID', taskID)
+            modal.find('.modal-title').text('Edit TAG ' + taskID)
+            $('#task-form-display').attr('TAG ID', taskID)
         }
 
         if (content) {

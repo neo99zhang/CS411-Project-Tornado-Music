@@ -9,15 +9,33 @@ def fetch_todo() -> dict:
     """
 
     conn = db.connect()
-    query_results = conn.execute("Select * from Musician limit 10;").fetchall()
+    query_results = conn.execute("Select * from Music limit 10;").fetchall()
+    query_results1 = conn.execute("Select * from TAG;").fetchall()
     conn.close()
     todo_list = []
+    tag_dic={}
+    for result in query_results1:
+        if result[2] in tag_dic:
+            mid=tag_dic[result[2]]
+            tag_dic[result[2]]=mid+","+result[1]
+        else:
+            tag_dic[result[2]]=result[1]
     for result in query_results:
-        item = {
+        if result[0] in tag_dic:
+            item = {
             "id": result[0],
-            "task": result[1],
-            "status": result[2]
-        }
+            "name": result[2],
+            "year": result[3],
+            "tag":tag_dic[result[0]]
+            }
+        else:
+            item = {
+            "id": result[0],
+            "name": result[2],
+            "year": result[3],
+            "tag":None
+            }
+            
         todo_list.append(item)
 
     return todo_list
@@ -75,7 +93,7 @@ def insert_new_task(text: str) ->  int:
     task_id = query_results[0][0]
     conn.close()
 
-    return task_id
+    return 
 
 
 def remove_task_by_id(task_id: int) -> None:

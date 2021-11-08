@@ -2,7 +2,7 @@
 
 <html>
     <head>
-        <title>Demo: TODO</title>
+        <title>tornado Music Base</title>
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,8 +19,8 @@
     <body>
 
     <main role="main" class="container extra-bottom">
-      <h1 class="mt-5">TODO List Demo App</h1>
-      <p><mark>Do it now.</mark></p>
+      <h1 class="mt-5">tornado Music Base</h1>
+      <p><mark>made by group8</mark></p>
     </main>
     
 
@@ -28,7 +28,7 @@
         
         <!-- Button trigger modal -->
         <div style="text-align: right;">
-        <button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#task-modal" data-source="New Task">Add Task</button>
+        <button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#task-modal" data-source="New Music TAGs">Add Music TAG</button>
         </div>
 
         
@@ -62,32 +62,30 @@
         <thead>
         <tr>
             <th class="task-id">#</th>
-            <th class="task">Task Name</th>
-            <th class="status">Status</th>
-            <th class="update">Edit</th>
+            <th class="task">Music Name</th>
+            <th class="status">Year</th>
+            <th class="update">TAG</th>
             <th class="update">Remove</th>
         </tr>
         </thead>
 
         <tbody>
-        {% for item in items %}
+        {% for item in items[1:] %}
             <tr>
                 <td>{{item.id}}</td>
-                <td>{{item.task}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.year}}</td>
+                {% if item.tag != None %}
+                    <td>{{item.tag}}</td>
+                {%endif%}
+                {% if item.tag == None %}
+                <td><button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#task-modal" data-source="{{item.id}}" data-content="{{item.tag}}"><i class="fa fa-pen fa-1" aria-hidden="true"></i></button></td>
 
-                {% if item.status == "In Progress" %}
-                    <td><button type="button" class="btn btn-outline-warning btn-sm state" data-source="{{item.id}}">{{item.status}}</button></td>
                 {%endif%}
-                {% if item.status == "Todo" %}
-                    <td><button type="button" class="btn btn-outline-secondary btn-sm state" data-source="{{item.id}}">{{item.status}}</button></td>
-                {%endif%}
-                {% if item.status == "Complete" %}
-                    <td><button type="button" class="btn btn-outline-success btn-sm state" data-source="{{item.id}}">{{item.status}}</button></td>
-                {%endif%}
-                
-                <td><button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#task-modal" data-source="{{item.id}}" data-content="{{item.task}}"><i class="fa fa-pen fa-1" aria-hidden="true"></i></button></td>
 
                 <td><button class="btn btn-outline-secondary btn-sm remove" data-source="{{item.id}}" type="button"><i class="fa fa-trash fa-1" aria-hidden="true"></i></button></td>
+            </tr>
+                
             </tr>
         {% endfor %}
         
