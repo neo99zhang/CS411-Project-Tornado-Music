@@ -41,8 +41,10 @@ def update(task_id):
 def create():
     """ recieves post requests to add new task """
     data = request.get_json()
-    db_helper.insert_new_task(data['description'])
-    result = {'success': True, 'response': 'Done'}
+    print(data)
+    db_helper.insert_new_task(data['task'],data['tag'])
+  
+    result = {'success': True, 'response': "DONE"}
     return jsonify(result)
 
 

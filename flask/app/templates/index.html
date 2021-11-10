@@ -28,7 +28,7 @@
         
         <!-- Button trigger modal -->
         <div style="text-align: right;">
-        <button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#task-modal" data-source="New Music TAGs">Add Music TAG</button>
+        <button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#task-modal" data-source="New Task">Add Task</button>
         </div>
 
         
@@ -43,7 +43,11 @@
             <div class="modal-body">
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="task-form-display">Task</span>
-                    <input type="text" class="form-control" placeholder="Description of task" aria-label="task-name" aria-describedby="basic-addon1">
+                    <input type="text" class="form-control1" placeholder="Description of task" aria-label="task-name" aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="task-form-display">Tag</span>
+                    <input type="text" class="form-control2" placeholder="Your new tag" aria-label="tag-name" aria-describedby="basic-addon1">
                 </div>
             </div>
             <div class="modal-footer">
@@ -76,14 +80,20 @@
                 <td>{{item.name}}</td>
                 <td>{{item.year}}</td>
                 {% if item.tag != None %}
-                    <td>{{item.tag}}</td>
+                    <td>
+                    {{item.tag}}
+                    
+                    </td>
+                    
                 {%endif%}
                 {% if item.tag == None %}
-                <td><button type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#task-modal" data-source="{{item.id}}" data-content="{{item.tag}}"><i class="fa fa-pen fa-1" aria-hidden="true"></i></button></td>
-
+                    <td>
+                    {{item.tag}}
+                    
+                    </td>
                 {%endif%}
 
-                <td><button class="btn btn-outline-secondary btn-sm remove" data-source="{{item.id}}" type="button"><i class="fa fa-trash fa-1" aria-hidden="true"></i></button></td>
+                <td><button class="btn btn-outline-secondary btn-sm remove" data-source="{{item.id}}" data-type="button"><i class="fa fa-trash fa-1" aria-hidden="true"></i></button></td>
             </tr>
                 
             </tr>

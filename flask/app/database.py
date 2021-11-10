@@ -75,7 +75,7 @@ def update_status_entry(task_id: int, text: str) -> None:
     conn.close()
 
 
-def insert_new_task(text: str) ->  int:
+def insert_new_task(task: int,tag:str) ->  int:
     """Insert new task to todo table.
 
     Args:
@@ -85,12 +85,15 @@ def insert_new_task(text: str) ->  int:
     """
 
     conn = db.connect()
-    query = 'Insert Into tasks (task, status) VALUES ("{}", "{}");'.format(
-        text, "Todo")
-    conn.execute(query)
+    query_results = conn.execute("Select MAX(TAG_id) from TAG;").fetchall()
+    tag_max=query_results[0][0]
+    query = 'Insert Into TAG (TAG_id,TAG_name,Music_id) VALUES ("{}", "{}","{}");'.format(
+       tag_max+1,task,tag)
+    # conn.execute(query)
     query_results = conn.execute("Select LAST_INSERT_ID();")
     query_results = [x for x in query_results]
-    task_id = query_results[0][0]
+    print(query_results)
+    # task_id = query_results[0][0]
     conn.close()
 
     return 

@@ -17,7 +17,7 @@ cd flask-gcp-mysql-demo
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-export FLASK_APP = app
+export FLASK_APP=app
 flask run
 ```
 

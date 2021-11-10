@@ -4,34 +4,41 @@ $(document).ready(function () {
     $('#task-modal').on('show.bs.modal', function (event) {
         const button = $(event.relatedTarget) // Button that triggered the modal
         const taskID = button.data('source') // Extract info from data-* attributes
-        const content = button.data('content') // Extract info from data-* attributes
+        const task = button.data('task') // Extract info from data-* attributes
+        const tag = button.data('tag')
 
         const modal = $(this)
         if (taskID === 'New Task') {
             modal.find('.modal-title').text(taskID)
             $('#task-form-display').removeAttr('taskID')
         } else {
-            modal.find('.modal-title').text('Edit TAG ' + taskID)
-            $('#task-form-display').attr('TAG ID', taskID)
+            modal.find('.modal-title').text('Edit Task ' + taskID)
+            $('#task-form-display').attr('taskID', taskID)
         }
 
-        if (content) {
-            modal.find('.form-control').val(content);
+        if (task) {
+            modal.find('.form-control1').val(task);
         } else {
-            modal.find('.form-control').val('');
+           modal.find('.form-control1').val('');
+        }
+        if (tag) {
+            modal.find('.form-control2').val(tag);
+        } else {
+           modal.find('.form-control2').val('');
         }
     })
 
 
     $('#submit-task').click(function () {
         const tID = $('#task-form-display').attr('taskID');
-        console.log($('#task-modal').find('.form-control').val())
+        
         $.ajax({
             type: 'POST',
-            url: tID ? '/edit/' + tID : '/create',
+            url:  '/create',
             contentType: 'application/json;charset=UTF-8',
             data: JSON.stringify({
-                'description': $('#task-modal').find('.form-control').val()
+                'task': $('#task-modal').find('.form-control1').val(),
+                'tag': $('#task-modal').find('.form-control2').val()
             }),
             success: function (res) {
                 console.log(res.response)
@@ -41,6 +48,7 @@ $(document).ready(function () {
                 console.log('Error');
             }
         });
+        console.log(data);
     });
 
     $('.remove').click(function () {
