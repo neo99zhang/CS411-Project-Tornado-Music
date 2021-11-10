@@ -63,66 +63,66 @@ def update_tag(task_id: int, tag1: str,tag2:str) -> None:
     conn.execute(query)
     conn.close()
     
-def search()->dict:
+def search(search1:str,plt:str)->dict:
+    # item={
+    #         "id": 1,
+    #         "name": 2,
+    #         "year": 3,
+    #         "tag":4
+    #     }
+    # return [item]
+    query = "(Select Music_name, Music_year, musician_name \
+        FROM Music NATURAL JOIN Produce JOIN Musician USING (musician_id_spotify)\
+        Where musician_name LIKE \"%"+search1+"%\") \
+        UNION (Select Music_name, Music_year, musician_name \
+        FROM Music NATURAL JOIN Produce JOIN Musician USING (musician_id_spotify) \
+        Where Music_name LIKE \"%"+search1+"%\"OR Music_name LIKE \"%"+search1 + "%\") LIMIT 15;"
 
-    # query = "(Select Music_name, Music_year, musician_name \
-    #     FROM Music NATURAL JOIN Produce JOIN Musician USING (musician_id_spotify)\
-    #     Where musician_name LIKE \"%"+search+"%\") \
-    #     UNION (Select Music_name, Music_year, musician_name \
-    #     FROM Music NATURAL JOIN Produce JOIN Musician USING (musician_id_spotify) \
-    #     Where Music_name LIKE \"%"+search+"%\"OR Music_name LIKE \"%"+search + "%\") LIMIT 15;"
+    if len(plt) != 0:
+        query = "Select Link_id, Link_name from Link l \
+            Where l.Link_web = 'youtube' AND Music_id_spotify in \
+            ( \
+            (Select Music_id_spotify \
+            FROM Music NATURAL JOIN Produce JOIN Musician USING (musician_id_spotify) \
+            Where musician_name LIKE \"%"+search1+"%\") \
+            UNION \
+            (Select Music_id_spotify \
+            FROM Music NATURAL JOIN Produce JOIN Musician USING (musician_id_spotify) \
+            Where Music_name LIKE \"%"+search1+"%\"OR Music_name LIKE \"%"+search1+"%\" ) \
+            ) \
+            LIMIT 15;"
 
-    # if len(plt) != 0:
-    #     query = "Select Link_id, Link_name from Link l \
-    #         Where l.Link_web = 'youtube' AND Music_id_spotify in \
-    #         ( \
-    #         (Select Music_id_spotify \
-    #         FROM Music NATURAL JOIN Produce JOIN Musician USING (musician_id_spotify) \
-    #         Where musician_name LIKE \"%"+search+"%\") \
-    #         UNION \
-    #         (Select Music_id_spotify \
-    #         FROM Music NATURAL JOIN Produce JOIN Musician USING (musician_id_spotify) \
-    #         Where Music_name LIKE \"%"+search+"%\"OR Music_name LIKE \"%"+search+"%\" ) \
-    #         ) \
-    #         LIMIT 15;"
-
-    # conn = db.connect()
-    # query_results = conn.execute(query).fetchall()
-    # conn.close()
-    # todo_list = []
-    # tag_dic={}
-    # for result in query_results:
-    #     if result[2] in tag_dic:
-    #         mid=tag_dic[result[2]]
-    #         tag_dic[result[2]]=mid+","+result[1]
-    #     else:
-    #         tag_dic[result[2]]=result[1]
-    # for result in query_results:
-    #     if result[0] in tag_dic:
-    #         item = {
-    #         "id": result[0],
-    #         "name": result[2],
-    #         "year": result[3],
-    #         "tag":tag_dic[result[0]]
-    #         }
-    #     else:
-    #         item = {
-    #         "id": result[0],
-    #         "name": result[2],
-    #         "year": result[3],
-    #         "tag":None
-    #         }
-            
-    #     todo_list.append(item)
-
-    # return todo_list
-    item = {
-            "id": 1,
-            "name": 2,
-            "year": 3,
-            "tag":4
+    conn = db.connect()
+    query_results = conn.execute(query).fetchall()
+    conn.close()
+    todo_list = []
+    tag_dic={}
+    for result in query_results:
+        if result[2] in tag_dic:
+            mid=tag_dic[result[2]]
+            tag_dic[result[2]]=mid+","+result[1]
+        else:
+            tag_dic[result[2]]=result[1]
+    for result in query_results:
+        if result[0] in tag_dic:
+            item = {
+            "id": result[0],
+            "name": result[2],
+            "year": result[3],
+            "tag":tag_dic[result[0]]
             }
-    return [item]
+        else:
+            item = {
+            "id": result[0],
+            "name": result[2],
+            "year": result[3],
+            "tag":None
+            }
+            
+        todo_list.append(item)
+
+    return todo_list
+    
 
 def update_status_entry(task_id: int, text: str) -> None:
     """Updates task status based on given `task_id`

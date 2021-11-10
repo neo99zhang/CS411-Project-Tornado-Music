@@ -2,7 +2,7 @@
 from flask import render_template, request, jsonify
 from app import app
 from app import database as db_helper
-
+items=[{}]
 @app.route("/delete/<int:task_id>", methods=['POST'])
 def delete(task_id):
     """ recieved post requests for entry delete """
@@ -63,16 +63,14 @@ def edit():
 @app.route("/search", methods=['POST','GET'])
 def search():
     """ recieved post requests for entry updates """
-
+    global items
     data = request.get_json()
-    print(data)
-
-    items = db_helper.search()
-    
+    if data!=None:
+        items = db_helper.search(data['search'],data['plt'])
     result = {'success': True, 'response': 'Status Updated'}
-    
-    # return render_template("search_results.html",items=items)
-    return render_template("search_results.html", items=items)
+    # return jsonify(data)
+    return render_template("search_results.html",items=items)
+    # return render_template("search_results.html", items=items)
 
 @app.route("/")
 def homepage():

@@ -111,7 +111,7 @@ $(document).ready(function () {
         $.ajax({
             type: 'POST',
             url:  '/search',
-            
+            contentType: 'application/json;charset=UTF-8',
             data: JSON.stringify({
                 'search': $('#task-modal2').find('.form-control1').val(),
                 'plt': $('#task-modal2').find('.form-control2').val(),
