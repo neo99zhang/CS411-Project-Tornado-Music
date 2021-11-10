@@ -41,12 +41,37 @@ def update(task_id):
 def create():
     """ recieves post requests to add new task """
     data = request.get_json()
-    print(data)
+    
     db_helper.insert_new_task(data['task'],data['tag'])
   
     result = {'success': True, 'response': "DONE"}
     return jsonify(result)
 
+
+@app.route("/update", methods=['POST'])
+def edit():
+    """ recieved post requests for entry updates """
+
+    data = request.get_json()
+    print(data)
+
+    db_helper.update_tag(data["task"],data["tag1"],data["tag2"])
+    result = {'success': True, 'response': 'Status Updated'}
+       
+    return jsonify(result)
+
+@app.route("/search", methods=['POST'])
+def search():
+    """ recieved post requests for entry updates """
+
+    data = request.get_json()
+    print(data)
+
+    items = db_helper.search(data["search"],data["plt"])
+    result = {'success': True, 'response': 'Status Updated'}
+    
+    # return render_template("search_results.html",items=items)
+    return jsonify(items)
 
 @app.route("/")
 def homepage():
