@@ -60,18 +60,19 @@ def edit():
        
     return jsonify(result)
 
-@app.route("/search", methods=['POST'])
+@app.route("/search", methods=['POST','GET'])
 def search():
     """ recieved post requests for entry updates """
 
     data = request.get_json()
     print(data)
 
-    items = db_helper.search(data["search"],data["plt"])
+    items = db_helper.search()
+    
     result = {'success': True, 'response': 'Status Updated'}
     
     # return render_template("search_results.html",items=items)
-    return jsonify(items)
+    return render_template("search_results.html", items=items)
 
 @app.route("/")
 def homepage():

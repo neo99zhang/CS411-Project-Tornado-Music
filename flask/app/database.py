@@ -62,32 +62,33 @@ def update_tag(task_id: int, tag1: str,tag2:str) -> None:
     query = 'Update TAG set TAG_name = "{}" where TAG_name = "{}" and Music_id={};'.format(tag2,tag1,task_id)
     conn.execute(query)
     conn.close()
-def search(search:str,plt:str)->dict:
+    
+def search()->dict:
 
-    query = "(Select Music_name, Music_year, musician_name \
-        FROM Music NATURAL JOIN Produce JOIN Musician USING (musician_id_spotify)\
-        Where musician_name LIKE \"%"+search+"%\") \
-        UNION (Select Music_name, Music_year, musician_name \
-        FROM Music NATURAL JOIN Produce JOIN Musician USING (musician_id_spotify) \
-        Where Music_name LIKE \"%"+search+"%\"OR Music_name LIKE \"%"+search + "%\") LIMIT 15;"
+    # query = "(Select Music_name, Music_year, musician_name \
+    #     FROM Music NATURAL JOIN Produce JOIN Musician USING (musician_id_spotify)\
+    #     Where musician_name LIKE \"%"+search+"%\") \
+    #     UNION (Select Music_name, Music_year, musician_name \
+    #     FROM Music NATURAL JOIN Produce JOIN Musician USING (musician_id_spotify) \
+    #     Where Music_name LIKE \"%"+search+"%\"OR Music_name LIKE \"%"+search + "%\") LIMIT 15;"
 
-    if len(plt) != 0:
-        query = "Select Link_id, Link_name from Link l \
-            Where l.Link_web = 'youtube' AND Music_id_spotify in \
-            ( \
-            (Select Music_id_spotify \
-            FROM Music NATURAL JOIN Produce JOIN Musician USING (musician_id_spotify) \
-            Where musician_name LIKE \"%"+search+"%\") \
-            UNION \
-            (Select Music_id_spotify \
-            FROM Music NATURAL JOIN Produce JOIN Musician USING (musician_id_spotify) \
-            Where Music_name LIKE \"%"+search+"%\"OR Music_name LIKE \"%"+search+"%\" ) \
-            ) \
-            LIMIT 15;"
+    # if len(plt) != 0:
+    #     query = "Select Link_id, Link_name from Link l \
+    #         Where l.Link_web = 'youtube' AND Music_id_spotify in \
+    #         ( \
+    #         (Select Music_id_spotify \
+    #         FROM Music NATURAL JOIN Produce JOIN Musician USING (musician_id_spotify) \
+    #         Where musician_name LIKE \"%"+search+"%\") \
+    #         UNION \
+    #         (Select Music_id_spotify \
+    #         FROM Music NATURAL JOIN Produce JOIN Musician USING (musician_id_spotify) \
+    #         Where Music_name LIKE \"%"+search+"%\"OR Music_name LIKE \"%"+search+"%\" ) \
+    #         ) \
+    #         LIMIT 15;"
 
-    conn = db.connect()
-    query_results = conn.execute(query).fetchall()
-    conn.close()
+    # conn = db.connect()
+    # query_results = conn.execute(query).fetchall()
+    # conn.close()
     # todo_list = []
     # tag_dic={}
     # for result in query_results:
@@ -115,8 +116,13 @@ def search(search:str,plt:str)->dict:
     #     todo_list.append(item)
 
     # return todo_list
-
-    return query_results
+    item = {
+            "id": 1,
+            "name": 2,
+            "year": 3,
+            "tag":4
+            }
+    return [item]
 
 def update_status_entry(task_id: int, text: str) -> None:
     """Updates task status based on given `task_id`

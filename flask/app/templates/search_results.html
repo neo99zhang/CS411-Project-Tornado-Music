@@ -3,7 +3,9 @@
 <html>
     <head>
         <title>tornado Music Base</title>
-
+        <a href="/">
+        <button>BACK</button>
+        </a>    
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -30,9 +32,9 @@
     <table class="table">
         <thead>
         <tr>
-                {% if item.tag != None %}
+                {% if items[0].tag != None %}
                     <td>
-                    {{item.tag}}
+                    {{items[0].tag}}
                     
                     </td>
                     
@@ -46,7 +48,7 @@
         </thead>
 
         <tbody>
-        {% for item in items[1:] %}
+        {% for item in items[:] %}
             <tr>
                 <td>{{item.id}}</td>
                 <td>{{item.name}}</td>
@@ -65,7 +67,6 @@
                     </td>
                 {%endif%}
 
-                <td><button class="btn btn-outline-secondary btn-sm remove" data-source="{{item.id}}" data-type="button"><i class="fa fa-trash fa-1" aria-hidden="true"></i></button></td>
             </tr>
                 
             </tr>

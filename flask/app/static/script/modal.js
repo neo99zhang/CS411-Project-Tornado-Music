@@ -111,14 +111,17 @@ $(document).ready(function () {
         $.ajax({
             type: 'POST',
             url:  '/search',
-            contentType: 'application/json;charset=UTF-8',
+            
             data: JSON.stringify({
                 'search': $('#task-modal2').find('.form-control1').val(),
                 'plt': $('#task-modal2').find('.form-control2').val(),
             }),
+            datatype: 'json',
             success: function (res) {
-                console.log(res.response)
-                location.reload();
+               
+                alert("Sucess");
+                window.location.href='/search'; // error，无法主动跳转
+                // window.event.returnValue=false;
             },
             error: function () {
                 console.log('Error');
