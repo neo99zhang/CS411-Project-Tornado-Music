@@ -75,13 +75,27 @@ def search():
 @app.route("/acc_search", methods=['POST','GET'])
 def acc_search():
     """ recieved post requests for entry updates """
-    global items1
+    global items3
     data = request.get_json()
     if data!=None:
-        items1= db_helper.acc_search(data['search'])
+        items3= db_helper.acc_search(data['search'])
     result = {'success': True, 'response': 'Status Updated'}
     # return jsonify(data)
-    return render_template("acc_search_results.html",items1=items1)
+    return render_template("acc_search_results.html",items1=items3)
+
+
+@app.route("/storedProc", methods=['POST','GET'])
+def storedProc():
+    """ recieved post requests for entry updates """
+
+    data = request.get_json()
+    print(data)
+    global items4
+    if data!=None:
+        items4 = db_helper.procedure(data["uid"])
+    result = {'success': True, 'response': 'Status Updated'}
+    print(items4)
+    return render_template("like_score.html",items1=items4)
 
 @app.route("/")
 def homepage():

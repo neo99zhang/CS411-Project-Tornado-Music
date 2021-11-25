@@ -152,6 +152,28 @@ $(document).ready(function () {
         });
        
     });
+    $('#submit-task5').click(function () {
+        const tID = $('#task-form-display').attr('taskID');
+        
+        $.ajax({
+            type: 'POST',
+            url:  '/storedProc',
+            contentType: 'application/json;charset=UTF-8',
+            data: JSON.stringify({
+                'uid': $('#task-modal4').find('.form-control1').val(),
+            }),
+            datatype: 'json',
+            success: function (res) {
+               
+                alert("Sucess");
+                window.location.href='/storedProc'; // error，无法主动跳转
+                // window.event.returnValue=false;
+            },
+            error: function () {
+                console.log('Error');
+            }
+        });
+    });
 
     $('.remove').click(function () {
         const remove = $(this)

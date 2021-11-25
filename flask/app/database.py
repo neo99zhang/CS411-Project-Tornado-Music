@@ -191,3 +191,25 @@ def remove_task_by_id(task_id: int) -> None:
     query = 'Delete From TAG where Music_id={};'.format(task_id)
     conn.execute(query)
     conn.close()
+
+def procedure(input_user_id: int) -> dict:
+    query = 'CALL recommand_follow({});'.format(input_user_id)
+ 
+    print(query)
+    conn = db.connect()
+ 
+    query_results = conn.execute(query).fetchall()
+    # print([x for x in query_results])
+    conn.close()
+ 
+    print(query_results)
+    items1=[{}]
+    for i,result in enumerate(query_results):
+        item={
+            "id":i,
+            "friend_id": result[0],
+            "like_score": result[1]
+        }
+        items1.append(item)
+
+    return items1
