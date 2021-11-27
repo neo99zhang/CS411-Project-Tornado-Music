@@ -5,7 +5,8 @@ class User(UserMixin):
 
 users = [
     {'id':'Tom', 'username': 'Tom', 'password': '111111'},
-    {'id':'Michael', 'username': 'Michael', 'password': '123456'}
+    {'id':'Michael', 'username': 'Michael', 'password': '123456'},
+    {'id':'abc','username':'abc','password':'123'}
 ]
 
 def query_user(user_id):

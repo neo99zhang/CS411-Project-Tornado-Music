@@ -1,4 +1,5 @@
-#!/Users/taohuili/Documents/j2/大四上/CS411/CS411-Project-Tornado-Music/flask/.venv/bin/python
+#!/home/kaiwen/Desktop/cs411/final_project/CS411-Project-Tornado-Music/flask/.venv/bin/python3
+
 # -*- coding: utf-8 -*-
 import re
 import sys

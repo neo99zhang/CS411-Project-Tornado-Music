@@ -4,6 +4,9 @@ from flask_login import LoginManager, login_user, logout_user, current_user, log
 from models import query_user, User
 from app import app
 from app import database as db_helper
+from flask_bootstrap import Bootstrap
+
+bootstrap = Bootstrap(app)
 items=[{}]
 @app.route("/delete/<int:task_id>", methods=['POST'])
 def delete(task_id):
@@ -139,6 +142,13 @@ def login():
 def logout():
     logout_user()
     return 'Logged out successfully!'
+
+@app.route('/signin')
+def signin():
+    
+    return render_template('signin.html')
+
+
 
 
 @app.route("/")
