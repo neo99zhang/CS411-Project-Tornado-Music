@@ -2,6 +2,11 @@
 from flask import render_template, request, jsonify
 from app import app
 from app import database as db_helper
+from flask_login import LoginManager, login_user, logout_user, current_user, login_required
+from models import query_user, User
+from flask_cors import CORS
+
+# CORS(app, resources={r'/*': {'origins': '*'}})
 items=[{}]
 @app.route("/delete/<int:task_id>", methods=['POST'])
 def delete(task_id):
@@ -71,6 +76,57 @@ def search():
     # return jsonify(data)
     return render_template("search_results.html",items=items)
     # return render_template("search_results.html", items=items)
+
+app.secret_key = '1234567' # random
+login_manager = LoginManager()
+login_manager.login_view = 'login'
+login_manager.login_message_category = 'info'
+login_manager.login_message = 'Please Login'
+login_manager.init_app(app)
+
+@login_manager.user_loader
+def load_user(user_id):
+    if query_user(user_id) is not None:
+        curr_user = User()
+        curr_user.id = user_id
+
+        return curr_user
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        user_id = request.form.get('userid')
+        user = query_user(user_id)
+        if user is not None and request.form['password'] == user['password']:
+
+            curr_user = User()
+            curr_user.id = user_id
+
+            login_user(curr_user)
+
+            return 'Login successfully'
+
+        #flash('Wrong username or password!')
+
+    return render_template('login.html')
+
+
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return 'Logged out successfully!'
+
+@app.route('/signup')
+def signup():
+    
+    return render_template('signup.html')
+
+@app.route('/api/hello', methods=['GET'])
+def hello():
+    return jsonify(ok=True, data='hello, world')
+
 
 @app.route("/")
 def homepage():

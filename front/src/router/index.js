@@ -10,13 +10,30 @@ const routes = [
     {
         path:'/',
         name:'home',
-        component: home
+        component: home,
     },
     {
-        path:'/about',
-        name:'about',
+        path:'/custom_search',
+        name:'custom search',
         component: about
-    }
+    },
+    {
+        path: '/user/library',
+        name:'user library',
+        component: about
+    },
+
+    {
+        path: '/user/friends',
+        name:'user friends',
+        component: about
+    },
+
+    {
+        path: '/user/recommendation',
+        name:'user rec',
+        component: about
+    },
 
 ]
 
