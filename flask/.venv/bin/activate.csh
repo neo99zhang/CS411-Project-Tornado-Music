@@ -8,7 +8,7 @@ alias deactivate 'test $?_OLD_VIRTUAL_PATH != 0 && setenv PATH "$_OLD_VIRTUAL_PA
 # Unset irrelevant variables.
 deactivate nondestructive
 
-setenv VIRTUAL_ENV "/home/kaiwen/Desktop/cs411/final_project/CS411-Project-Tornado-Music/flask/.venv"
+setenv VIRTUAL_ENV "/home/kaiwen/Desktop/cs411/copy/flask/.venv"
 
 set _OLD_VIRTUAL_PATH="$PATH"
 setenv PATH "$VIRTUAL_ENV/bin:$PATH"

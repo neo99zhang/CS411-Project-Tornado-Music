@@ -59,6 +59,7 @@ $(document).ready(function () {
            modal.find('.form-control3').val('');
         }
     })
+   
 
     $('#submit-task').click(function () {
         const tID = $('#task-form-display').attr('taskID');
@@ -175,11 +176,134 @@ $(document).ready(function () {
         });
     });
 
+
+    $('#submit-task8').click(function () {
+        const tID = $('#task-form-display').attr('taskID');
+        
+        $.ajax({
+            type: 'POST',
+            url:  '/music',
+            contentType: 'application/json;charset=UTF-8',
+            data: JSON.stringify({
+                'search': $('#task-modal8').find('.form-control1').val(),
+            }),
+            datatype: 'json',
+            success: function (res) {
+               
+                alert("Sucess");
+                window.location.href='/music'; // error，无法主动跳转
+                // window.event.returnValue=false;
+            },
+            error: function () {
+                console.log('Error');
+            }
+        });
+    });
+
+    $('#submit-task6').click(function () {
+        const tID = $('#task-form-display').attr('taskID');
+        
+        $.ajax({
+            type: 'POST',
+            url:  '/login',
+            contentType: 'application/json;charset=UTF-8',
+            data: JSON.stringify({
+                'username': $('#task-modal5').find('.form-control1').val(),
+                'password': $('#task-modal5').find('.form-control2').val(),
+            }),
+            datatype: 'json',
+            success: function (res) {
+                console.log(res.response)
+                location.reload();
+            },
+            error: function () {
+                console.log('Error');
+            }
+        });
+       
+    });
+
+
+    $('#submit-task7').click(function () {
+        const tID = $('#task-form-display').attr('taskID');
+        
+        $.ajax({
+            type: 'POST',
+            url:  '/signup',
+            contentType: 'application/json;charset=UTF-8',
+            data: JSON.stringify({
+                'username': $('#task-modal6').find('.form-control1').val(),
+                'password': $('#task-modal6').find('.form-control2').val(),
+            }),
+            datatype: 'json',
+            success: function (res) {
+                console.log(res.response)
+                location.reload();
+            },
+            error: function () {
+                console.log('Error');
+            }
+        });
+       
+    });
+
     $('.remove').click(function () {
         const remove = $(this)
         $.ajax({
             type: 'POST',
             url: '/delete/' + remove.data('source'),
+            success: function (res) {
+                
+                console.log(res.response)
+                location.reload();
+            },
+            error: function () {
+                console.log('Error');
+                location.reload();
+
+            }
+        });
+    });
+
+
+    $('.signout').click(function () {
+        $.ajax({
+            type: 'POST',
+            url: '/signout' ,
+            success: function (res) {
+                
+                console.log(res.response)
+                location.reload();
+            },
+            error: function () {
+                console.log('Error');
+                location.reload();
+
+            }
+        });
+    });
+    
+    $('.like').click(function () {
+        const like = $(this)
+
+        $.ajax({
+            type: 'POST',
+            url: '/like/' + like.data('source'),
+            success: function (res) {
+                console.log(res.response)
+                location.reload();
+            },
+            error: function () {
+                console.log('Error');
+            }
+        });
+    });
+    $('.dislike').click(function () {
+        const dislike = $(this)
+
+        $.ajax({
+            type: 'POST',
+            url: '/dislike/' + dislike.data('source'),
             success: function (res) {
                 console.log(res.response)
                 location.reload();
