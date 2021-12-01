@@ -1,0 +1,26 @@
+Select Link_id, Link_name from Link l　
+Where l.Link_web = 'spotify' AND Music_id_spotify in　
+(
+(Select Music_id_spotify 
+FROM Music NATURAL JOIN Produce JOIN Musician USING (musician_id_spotify) 
+Where musician_name LIKE "%a%") 
+UNION 
+(Select Music_id_spotify 
+FROM Music NATURAL JOIN Produce JOIN Musician USING (musician_id_spotify) 
+Where Music_name LIKE "%a%" OR Music_name LIKE "%a%")
+) LIMIT 15;
+
+
+Select Link_id, Link_name from Link l
+Where l.Link_web = "youtube" AND Music_id_spotify in
+(
+(Select Music_id_spotify
+FROM Music NATURAL JOIN Produce JOIN Musician USING (musician_id_spotify)
+Where musician_name LIKE "%a%")
+UNION
+(Select Music_id_spotify
+FROM Music NATURAL JOIN Produce JOIN Musician USING (musician_id_spotify)
+Where Music_name LIKE "%a%"OR Music_name LIKE "%o%" )
+)
+LIMIT 15;
+
