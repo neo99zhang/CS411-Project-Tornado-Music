@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>tornado Music Base</title>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="{{ url_for('static', filename='img/cs.ico') }}">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" 
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles/custom.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+			integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">s
+
+        <style>
+            body{
+                background-image:url({{ url_for('static', filename='img/through.png') }});
+            }
+
+        </style>
+    </head>
+
+
+
+    <header>
+        <a href="#" class="logo">Tornado Music</a>
+        <ul class="navigation">
+            <li><a href="/">Home</a></li>
+            <li><a href="about">About</a></li>
+            
+
+
+
+        </ul>
+        <div class="search">
+            <input type="text" placeholder="Search">
+            <i class="fa fa-search" aria-hidden="true"></i>
+        </div>
+    </header>
+    
+    <main role="main" class="container extra-bottom">
+      <h1 class="mt-5"> </h1>
+      <p><mark> </mark></p>
+    </main>
+    <body>
+
+    <div class="container">
+        <div class="row">
+        <div class="col-sm">
+            <div style="text-align: left;">
+                <button style='background-color:blueviolet;' type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#task-modal2" data-source="New Task">Advanced Search</button>
+                
+                </div>
+        
+                
+                <div class="modal fade" id="task-modal2" tabindex="-1" aria-labelledby="Label" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="Label">Advanced Search</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+        
+                    <div class="modal-body">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="task-form-display">search_key</span>
+                            <input type="text" class="form-control1" placeholder="search content" aria-label="tag-name" aria-describedby="basic-addon1">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="task-form-display">pltform</span>
+                            <input type="text" class="form-control2" placeholder="optional" aria-label="tag-name" aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button id="submit-task3" type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+        </div>
+        <div class="col-sm">
+          <!-- Button trigger modal -->
+        <div style="text-align: left;">
+            <button style='background-color: blueviolet;' type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#task-modal8" data-source="New Task">musician search</button>
+            </div>
+    
+            
+            <div class="modal fade" id="task-modal8" tabindex="-1" aria-labelledby="Label" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="Label">musician</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+    
+                <div class="modal-body">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="task-form-display">musician name</span>
+                        <input type="text" class="form-control1" placeholder="search content" aria-label="tag-name" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button id="submit-task8" type="button" class="btn btn-primary">Search</button>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="col-sm">
+          <!-- Button trigger modal -->
+        <div style="text-align: left;">
+            <button type="button" style='background-color: blueviolet;' class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#task-modal3" data-source="New Task">accurate search</button>
+            </div>
+    
+            
+            <div class="modal fade" id="task-modal3" tabindex="-1" aria-labelledby="Label" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="Label">acc_search</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+    
+                <div class="modal-body">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="task-form-display">music name</span>
+                        <input type="text" class="form-control1" placeholder="search content" aria-label="tag-name" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button id="submit-task4" type="button" class="btn btn-primary">Save changes</button>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="col-sm">
+            <!-- Button trigger modal -->
+            <div style="text-align: left;">
+                <button style='background-color: blueviolet;' type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#task-modal4" data-source="New Task">Friends</button>
+                </div>
+        
+                
+                <div class="modal fade" id="task-modal4" tabindex="-1" aria-labelledby="Label" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="Label">storedProc</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+        
+                    <div class="modal-body">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="task-form-display">input_user_id</span>
+                            <input type="text" class="form-control1" placeholder="search content" aria-label="tag-name" aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button id="submit-task5" type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+
+
+
+
+        <div class="sidebar">
+            <!-- Button trigger modal -->
+        <div style="text-align: right;">
+            <button style='background-color: blueviolet;' type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#task-modal5" data-source="New Task">log in</button>
+            </div>
+    
+            
+            <div class="modal fade" id="task-modal5" tabindex="-1" aria-labelledby="Label" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="Label">log in</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+    
+                <div class="modal-body">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="task-form-display">user name</span>
+                        <input type="text" class="form-control1" placeholder="user name" aria-label="tag-name" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="task-form-display">password</span>
+                        <input type="text" class="form-control2" placeholder="password" aria-label="tag-name" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button id="submit-task6" type="button" class="btn btn-primary">log in</button>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        
+
+   
+
+
+    <div class="sidebar">    
+        
+        <!-- Button trigger modal -->
+        <div style="text-align: right;">
+        <button style='background-color: blueviolet;' type="button" class="btn btn-outline-info btn-sm" data-bs-toggle="modal" data-bs-target="#task-modal6" data-source="New Task">sign up</button>
+        </div>
+
+        
+        <div class="modal fade" id="task-modal6" tabindex="-1" aria-labelledby="Label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="Label">sign up</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="task-form-display">user name</span>
+                    <input type="text" class="form-control1" placeholder="user name" aria-label="tag-name" aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="task-form-display">password</span>
+                    <input type="text" class="form-control2" placeholder="password" aria-label="tag-name" aria-describedby="basic-addon1">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button id="submit-task7" type="button" class="btn btn-primary">sign up</button>
+            </div>
+            </div>
+        </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <!--Todo Table-->
+    <div class="container table-responsive">          
+    <table class="table">
+        <thead>
+        <tr>
+            <th class="task-id">#</th>
+            <th class="task">Music Name</th>
+            <th class="status">Year</th>
+            <th class="update">TAG</th>
+            <th class="update">Remove</th>
+            <th class="update">LIKE</th>
+            <th class="update">DISLIKE</th>
+
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for item in items[1:] %}
+            <tr>
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.year}}</td>
+                {% if item.tag != None %}
+                    <td>
+                    {{item.tag}}
+                    
+                    </td>
+                    
+                {%endif%}
+                {% if item.tag == None %}
+                    <td>
+                    {{item.tag}}
+                    
+                    </td>
+                {%endif%}
+
+                <td><button style='background-color: powderblue;' class="btn btn-outline-secondary btn-sm remove" data-source="{{item.id}}" data-type="button"><i class="fa fa-trash fa-1" aria-hidden="true"></i></button></td>
+               
+                <td><button style='background-color: powderblue;' class="btn btn-outline-secondary btn-sm like" data-source="{{item.id}}" data-type="button">LIKE </button></td>
+                <td><button style='background-color: powderblue;' class="btn btn-outline-secondary btn-sm dislike" data-source="{{item.id}}" data-type="button">DISLIKE </button></td>
+
+            </tr>
+            
+            </tr>
+        {% endfor %}
+        
+        </tbody>
+    </table>
+    </div>
+
+
+
+    <footer class="footer">
+      <div class="container">
+            <p class="text-muted"><small>App developed for CS411 UIUC by @tcheng10</small></p>
+      </div>
+    </footer>
+  </body>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='script/modal.js') }}"></script>
+
+</html>
