@@ -2,11 +2,17 @@ runtime: python37 # or another supported version
 
 instance_class: F1
 
+# env_variables:
+  # MYSQL_USER: root # please put in your credentials
+  # MYSQL_PASSWORD: new # please put in your credentials
+  # MYSQL_DB: musicbase # please put in your credentials
+  # MYSQL_HOST: 35.222.27.65 # please put in your credentials
+
 env_variables:
-  MYSQL_USER: root # please put in your credentials
-  MYSQL_PASSWORD: new # please put in your credentials
-  MYSQL_DB: musicbase # please put in your credentials
-  MYSQL_HOST: 35.222.27.65 # please put in your credentials
+  CLOUD_SQL_USERNAME: root
+  CLOUD_SQL_PASSWORD: new
+  CLOUD_SQL_DATABASE_NAME: musicbase
+  CLOUD_SQL_CONNECTION_NAME: workshop1-demo-326607:us-central1:tornado1
 
 handlers:
 # Matches requests to /images/... to files in static/images/...
